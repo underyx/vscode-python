@@ -52,6 +52,10 @@ export class DebugClientHelper {
             env.PYTHONUNBUFFERED = '1';
         }
 
+        if (args.gevent) {
+            env.GEVENT_SUPPORT = 'True';  // this is read in pydevd_constants.py
+        }
+
         return env;
     }
 }
