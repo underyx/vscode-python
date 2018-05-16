@@ -10,7 +10,7 @@ import { EnvironmentVariables, IEnvironmentVariablesService } from './types';
 @injectable()
 export class EnvironmentVariablesService implements IEnvironmentVariablesService {
     private readonly pathVariable: 'PATH' | 'Path';
-    constructor( @inject(IPathUtils) pathUtils: IPathUtils) {
+    constructor(@inject(IPathUtils) pathUtils: IPathUtils) {
         this.pathVariable = pathUtils.getPathVariableName();
     }
     public async parseFile(filePath: string): Promise<EnvironmentVariables | undefined> {
@@ -73,7 +73,7 @@ function parseEnvironmentVariables(contents: string): EnvironmentVariables | und
         return undefined;
     }
 
-    const env = {} as EnvironmentVariables;
+    const env: EnvironmentVariables = {};
     contents.split('\n').forEach(line => {
         const match = line.match(/^\s*([\w\.\-]+)\s*=\s*(.*)?\s*$/);
         if (match !== null) {
